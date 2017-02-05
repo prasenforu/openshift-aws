@@ -2,7 +2,7 @@
 
 # This is "DNS" Installation script
 
-echo nameserver 8.8.8.8 >> /etc/resolv.conf
+echo 'nameserver 8.8.8.8' | sudo tee --append /etc/resolv.conf
 
 # Install packages
 
@@ -19,10 +19,10 @@ git clone https://github.com/prasenforu/openshift-aws.git /home/ec2-user/aws-in-
 
 # Setting and configuring DNS 
 
-sudo cp /home/ec2-user/aws-in-openshift/openshift-aws/cloudapps.cloud-cafe.in.db /var/named/dynamic/cloudapps.cloud-cafe.in.db
-sudo cp /home/ec2-user/aws-in-openshift/openshift-aws/cloud-cafe.in.db /var/named/dynamic/cloud-cafe.in.db
+sudo cp /home/ec2-user/aws-in-openshift/cloudapps.cloud-cafe.in.db /var/named/dynamic/cloudapps.cloud-cafe.in.db
+sudo cp /home/ec2-user/aws-in-openshift/cloud-cafe.in.db /var/named/dynamic/cloud-cafe.in.db
 sudo rm /etc/named.conf
-sudo cp /home/ec2-user/aws-in-openshift/openshift-aws/named.conf /etc/named.conf
+sudo cp /home/ec2-user/aws-in-openshift/named.conf /etc/named.conf
 
 sudo chgrp named -R /var/named
 sudo chown named -R /var/named/dynamic
@@ -35,18 +35,20 @@ sudo systemctl status named
 
 # Setting Network for hostname change
 
-sudo echo preserve_hostname: true >>/etc/cloud/cloud.cfg
-sudo echo ns1.cloud-cafe.in > /etc/hostname
-sudo echo HOSTNAME=ns1.cloud-cafe.in >> /etc/sysconfig/network
+echo 'preserve_hostname: true' | sudo tee --append /etc/cloud/cloud.cfg
+sudo rm /etc/hostname
+sudo touch /etc/hostname
+echo 'ns1.cloud-cafe.in' | sudo tee --append /etc/hostname
+echo 'HOSTNAME=ns1.cloud-cafe.in' | sudo tee --append /etc/sysconfig/network
 
 # Setting passwordless login
 
-sudo echo StrictHostKeyChecking no >> /etc/ssh/ssh_config
+echo 'StrictHostKeyChecking no' | sudo tee --append /etc/ssh/ssh_config
 sudo ssh-keygen -f /root/.ssh/id_rsa -N ''
 
 # Setting up yum repo for openshift
 
-sudo cp /home/ec2-user/aws-in-openshift/openshift-aws/open.repo /etc/yum.repos.d/open.repo
+sudo cp /home/ec2-user/aws-in-openshift/open.repo /etc/yum.repos.d/open.repo
 sudo yum clean all
 sudo yum repolist
 sudo yum -y update
@@ -59,3 +61,5 @@ sudo systemctl start docker
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+
+sudo cat /home/ec2-user/aws-in-openshift/hostfile >> /etc/hosts
