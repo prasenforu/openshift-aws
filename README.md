@@ -16,7 +16,7 @@ ssh ec2-user@$node -i prasen.pem "sudo sed -i 's/#PubkeyAuthentication yes/Pubke
 ssh ec2-user@$node -i prasen.pem "sudo service sshd restart"
 done
 
-# Install Openshift 3.3
+# Install Openshift 3.2
 
 # 1. First Install "bash-completion" & the following tools and utilities on the master host
 
