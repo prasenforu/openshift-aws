@@ -1,2 +1,1 @@
-# CVSHealthCare
 # openshift-aws
