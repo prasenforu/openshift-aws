@@ -63,50 +63,47 @@ And follow the steps.
 # 7. After Sucessfull Installation follow below steps
 
 1.
-oc get nodes
-
-oc get nodes --show-labels
+   oc get nodes
+   oc get nodes --show-labels
 
 2.
-oc label node ose-hub.cloud-cafe.in region="infra" zone="infranodes" --overwrite
-oc label node ose-node1.cloud-cafe.in region="primary" zone="east" --overwrite
-oc label node ose-master.cloud-cafe.in region="primary" zone="west" --overwrite
+   oc label node ose-hub.cloud-cafe.in region="infra" zone="infranodes" --overwrite
+   oc label node ose-node1.cloud-cafe.in region="primary" zone="east" --overwrite
+   oc label node ose-master.cloud-cafe.in region="primary" zone="west" --overwrite
 
 3. 
-oc get nodes
-
-oc get nodes --show-labels
+   oc get nodes
+   oc get nodes --show-labels
 
 4.
-cp /etc/origin/master/master-config.yaml /etc/origin/master/master-config.yaml.original
+   cp /etc/origin/master/master-config.yaml /etc/origin/master/master-config.yaml.original
 
 5. Edit /etc/origin/master/master-config.yaml and Set defaultNodeSelector as follows.
-defaultNodeSelector: "region=primary"
+   defaultNodeSelector: "region=primary"
 
-systemctl restart atomic-openshift-master
-systemctl status atomic-openshift-master
+   systemctl restart atomic-openshift-master
+   systemctl status atomic-openshift-master
 
-6. execute below command and In annotations section, add the this line "openshift.io/node-selector: region=infra" in the default namespace object:
-oc edit namespace default
+6. Execute below command and In annotations section, add the this line "openshift.io/node-selector: region=infra" in the default namespace object:
+   oc edit namespace default
 
 then check
 
-oc get namespace default -o yaml
+   oc get namespace default -o yaml
 
 7. Set Process logs
-journalctl -f -u atomic-openshift-master
-journalctl -f -u atomic-openshift-node
+   journalctl -f -u atomic-openshift-master
+   journalctl -f -u atomic-openshift-node
 
 8. Authentication: By default authentication is set to deny all.
 
-yum install -y httpd-tools
+   yum install -y httpd-tools
 
-htpasswd -c /etc/origin/master/users.htpasswd admin
-htpasswd /etc/origin/master/users.htpasswd testuser
-htpasswd /etc/origin/master/users.htpasswd pkar
+   htpasswd -c /etc/origin/master/users.htpasswd admin
+   htpasswd /etc/origin/master/users.htpasswd testuser
+   htpasswd /etc/origin/master/users.htpasswd pkar
 
-
-Edit /etc/origin/master/master-config.yaml as follows
+9. Edit /etc/origin/master/master-config.yaml as follows
 
 identityProviders:
  - name: my_htpasswd_provider
@@ -118,21 +115,19 @@ identityProviders:
  kind: HTPasswdPasswordIdentityProvider
  file: /etc/origin/master/users.htpasswd
 
+10. Create Registry and Router
 
-echo '{"kind":"ServiceAccount","apiVersion":"v1","metadata":{"name":"registry"}}' | oc create -n default -f -
+ echo '{"kind":"ServiceAccount","apiVersion":"v1","metadata":{"name":"registry"}}' | oc create -n default -f -
+ oadm policy add-cluster-role-to-user cluster-admin admin
+ oadm policy add-scc-to-user privileged system:serviceaccount:default:registry
 
-oadm policy add-cluster-role-to-user cluster-admin admin
-oadm policy add-scc-to-user privileged system:serviceaccount:default:registry
+ systemctl restart atomic-openshift-master
+ systemctl status atomic-openshift-master
+ oadm registry --create --credentials=/etc/origin/master/openshift-registry.kubeconfig --service-account=registry --selector='region=infra'
 
-systemctl restart atomic-openshift-master
-systemctl status atomic-openshift-master
+ oadm router router --replicas=1 --selector='region=infra' --credentials='/etc/origin/master/openshift-router.kubeconfig' --service-account=router --stats-password=<password>
 
-9. Create Registry and Router
-
-oadm registry --create --credentials=/etc/origin/master/openshift-registry.kubeconfig --service-account=registry --selector='region=infra'
-
-oadm router router --replicas=1 --selector='region=infra' --credentials='/etc/origin/master/openshift-router.kubeconfig' --service-account=router --stats-password=admin$2675
-
-Check status
-oc get pods
-oc get all
+11. Check status
+  
+  oc get pods
+  oc get all
