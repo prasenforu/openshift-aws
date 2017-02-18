@@ -5,7 +5,7 @@
 # Variable declare
 
 iid=ami-39ac915a
-ity=t2.medium
+ity=t2.micro
 knm=prasen
 subprid=subnet-5861ed2e
 subpuid=subnet-84f095e0
