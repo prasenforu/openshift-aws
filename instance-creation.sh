@@ -5,7 +5,7 @@
 # Variable declare
 
 iid=ami-39ac915a
-ity=t2.micro
+ity=t2.medium
 knm=prasen
 subprid=subnet-5861ed2e
 subpuid=subnet-84f095e0
@@ -49,6 +49,7 @@ aws ec2 run-instances --image-id $iid --count 1 \
 n1iid=`cat /tmp/node1-ins-$USER | grep INSTANCES | awk '{print $7}' | cut -d "-" -f2 | cut -d '"' -f1`
 aws ec2 create-tags --resources i-$n1iid --tags Key=Name,Value=OSE-NODE-1
 
+
 # NDOE2 Server
 
 echo "Starting OSE NODE-2 Host .."
@@ -60,12 +61,16 @@ echo "Starting OSE NODE-2 Host .."
 #n2iid=`cat /tmp/node2-ins-$USER | grep INSTANCES | awk '{print $7}' | cut -d "-" -f2 | cut -d '"' -f1`
 #aws ec2 create-tags --resources i-$n2iid --tags Key=Name,Value=OSE-NODE-2
 
+echo "Waiting all Hosts in running state .."
+sleep 90
+
 # Setting up Volume
 
 echo "Creating a volume for Master..."
 
 aws ec2 create-volume --size $volsz --availability-zone $az > /tmp/$volg-$az-$USER
 vid=`cat /tmp/$volg-$az-$USER | awk '{print $6}' | cut -d "-" -f2 | cut -d '"' -f1`
+sleep 20
 aws ec2 create-tags --resources vol-$vid --tags Key=Name,Value=Docker-Storage-Master
 aws ec2 attach-volume --volume-id vol-$vid --instance-id i-$miid --device /dev/sdf
 
@@ -73,6 +78,7 @@ echo "Creating a volume for Hub..."
 
 aws ec2 create-volume --size $volsz --availability-zone $az > /tmp/$volg-$az-$USER
 vid=`cat /tmp/$volg-$az-$USER | awk '{print $6}' | cut -d "-" -f2 | cut -d '"' -f1`
+sleep 20
 aws ec2 create-tags --resources vol-$vid --tags Key=Name,Value=Docker-Storage-Hub
 aws ec2 attach-volume --volume-id vol-$vid --instance-id i-$hiid --device /dev/sdf
 
@@ -80,6 +86,7 @@ echo "Creating a volume for Node-1..."
 
 aws ec2 create-volume --size $volsz --availability-zone $az > /tmp/$volg-$az-$USER
 vid=`cat /tmp/$volg-$az-$USER | awk '{print $6}' | cut -d "-" -f2 | cut -d '"' -f1`
+sleep 20
 aws ec2 create-tags --resources vol-$vid --tags Key=Name,Value=Docker-Storage-Node-1
 aws ec2 attach-volume --volume-id vol-$vid --instance-id i-$n1iid --device /dev/sdf
 
@@ -87,6 +94,7 @@ echo "Creating a volume for Node-2..."
 
 #aws ec2 create-volume --size $volsz --availability-zone $az > /tmp/$volg-$az-$USER
 #vid=`cat /tmp/$volg-$az-$USER | awk '{print $6}' | cut -d "-" -f2 | cut -d '"' -f1`
+sleep 20
 #aws ec2 create-tags --resources vol-$vid --tags Key=Name,Value=Docker-Storage-Node-2
 #aws ec2 attach-volume --volume-id vol-$vid --instance-id i-$n2iid --device /dev/sdf
 
