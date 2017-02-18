@@ -98,4 +98,4 @@ sleep 20
 #aws ec2 create-tags --resources vol-$vid --tags Key=Name,Value=Docker-Storage-Node-2
 #aws ec2 attach-volume --volume-id vol-$vid --instance-id i-$n2iid --device /dev/sdf
 
-aws ec2 describe-instances --instance-id i-$miid | grep INSTANCES | awk '{print $12  "Public IP  " $14}' > /tmp/master-pubip-$USER
+aws ec2 describe-instances --instance-id i-$miid | grep INSTANCES | awk '{print $13}' > /tmp/master-pubip-$USER
