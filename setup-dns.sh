@@ -6,7 +6,7 @@ echo 'nameserver 8.8.8.8' | sudo tee --append /etc/resolv.conf
 
 # Install packages
 
-sudo yum install -y yum-utils bind bind-utils rpcbind nfs-server nfs-lock nfs-idmap git wget
+sudo yum install -y yum-utils bind bind-utils rpcbind nfs-server nfs-lock nfs-idmap git wget unzip zip
 sudo yum -y install wget git net-tools bind-utils iptables-services bridge-utils pythonvirtualenv gcc bash-completion
 
 sudo systemctl enable named
