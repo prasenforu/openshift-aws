@@ -7,3 +7,9 @@ sed -i "s/$OLD_IP/$PUB_IP/g" /etc/origin/master/master-config.yaml
 
 systemctl restart atomic-openshift-master
 systemctl status atomic-openshift-master
+echo ""
+echo ""
+echo ""
+echo ""
+url=`more /etc/origin/master/master-config.yaml | grep publicURL`
+echo $url
