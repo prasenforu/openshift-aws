@@ -6,8 +6,9 @@ ssh ose-master "yum -y install wget git net-tools bind-utils iptables-services b
 
 # yum update on the master and all the nodes:
 
-for node in {ose-master,ose-hub,ose-node1}; do
+for node in {ose-master,ose-hub,ose-node1,ose-node2}; do
 echo "Running yum update on $node" && \
+ssh $node "echo 'nameserver 8.8.8.8' | sudo tee --append /etc/resolv.conf"
 ssh $node "yum -y update"
 ssh $node "yum install -y wget git net-tools bind-utils"
 done
@@ -16,7 +17,7 @@ done
 # Below chcon only it you OSE 3.3 on RHEL 7.3
 # OSE 3.3 on RHEL 7.3 its not required
 
-for node in {ose-master,ose-hub,ose-node1}; do
+for node in {ose-master,ose-hub,ose-node1,ose-node2}; do
 echo "Installing Docker on $node" && \
 ssh $node "sudo yum -y install docker"
 ssh $node "sed -i \"/^OPTIONS=/ s:.*:OPTIONS=\'--selinux-enabled --insecure-registry 172.30.0.0\/16\':\" /etc/sysconfig/docker"
