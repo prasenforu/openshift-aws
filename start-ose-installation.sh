@@ -14,3 +14,7 @@ sed -i "s/XXXXXXXXX/$maspubip/g" /home/ec2-user/aws-in-openshift/myconfighost
 # Run ansible playbook
 
 ansible-playbook -i myconfighost /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml
+
+# copy post OSE setup script
+scp /home/ec2-user/aws-in-openshift/post-ose-setup.sh  ose-master:/root/
+scp /home/ec2-user/aws-in-openshift/reset-ip.sh  ose-master:/root/
