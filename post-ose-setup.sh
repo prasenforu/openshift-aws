@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Post installation
+# Change password as per your requirement
 
 admpas=admin2675
-userpas=tcs2675
+userpas=pkar2675
 
 # Backup config file
 cp /etc/origin/master/master-config.yaml /etc/origin/master/master-config.yaml.original
