@@ -197,7 +197,7 @@ chmod 755 *.sh
 ```
 	./start-ose-installation.sh
 ```
-7.	After OSE 3.3 Installation, there few setup need to make environment ready
+####7.	After OSE 3.3 Installation, there few setup need to make environment ready
 	Login authentication using htpassword, edit this file as per your requirement.
 	
 	### Note: This script need to run from ose-master host
