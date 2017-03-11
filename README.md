@@ -5,25 +5,26 @@ This Quick Start reference deployment guide provides step-by-step instructions f
 
 ## OpenShift & AWS Architecture
 We will look at the OpenShift v3.x was created to reflect the additional information needed based on some key models below Docker, Kubernetes.
-•	DNS: The host that contain Red Hat OpenShift control components, including the API server and the controller manager server. The master manages nodes in its Kubernetes
-•	Master: The host that contain Red Hat OpenShift control components, including the API server and the controller manager server. The master manages nodes in its Kubernetes cluster and schedules pods to run on nodes.
-•	Hub: The host that contain Red Hat OpenShift registry, router and NFS. This server some people call as Infra Server. This server is important, we will point our wild card DNS “cloudapps.cloud-cafe.in” in godaddy.in in my domain configuration.
-•	Node1 and Node2: Nodes provide the runtime environments for containers. Each node in a Kubernetes cluster has the required services to be managed by the master. Nodes also have the required services to run pods, including Docker, a kubelet and a service proxy. 
+
+- DNS: The host that contain Red Hat OpenShift control components, including the API server and the controller manager server. The master manages nodes in its Kubernetes
+- Master: The host that contain Red Hat OpenShift control components, including the API server and the controller manager server. The master manages nodes in its Kubernetes cluster and schedules pods to run on nodes.
+- Hub: The host that contain Red Hat OpenShift registry, router and NFS. This server some people call as Infra Server. This server is important, we will point our wild card DNS “cloudapps.cloud-cafe.in” in godaddy.in in my domain configuration.
+- Node1 and Node2: Nodes provide the runtime environments for containers. Each node in a Kubernetes cluster has the required services to be managed by the master. Nodes also have the required services to run pods, including Docker, a kubelet and a service proxy. 
 
 image
 
 ## Prerequisites 
 Before you deploy this Quick Start, we recommend that you become familiar with the following AWS services. (If you are new to AWS, see Getting Started with AWS.)
 
-•	Amazon Virtual Private Cloud (Amazon VPC)
-•	Amazon Elastic Compute Cloud (Amazon EC2)
+- Amazon Virtual Private Cloud (Amazon VPC)
+- Amazon Elastic Compute Cloud (Amazon EC2)
 
 It is assumes that familiarity with PaaS concepts and Red Hat OpenShift. For more information, see the Red Hat OpenShift documentation.
 If you want to access publically your openshift then you need registered domain. Here I use my domain (cloud-café.in) which I purchase from godaddy.in
 
-Step #1	Subscribe to Red Hat OpenShift
-Step #2	Prepare an AWS Account
-Step #3	Setup VPC
+- Step #1	Subscribe to Red Hat OpenShift
+- Step #2	Prepare an AWS Account
+- Step #3	Setup VPC
 
 1.	Configure VPC with 10.90.0.0/16 CIDR	
 (Do not use 10.1.0.0/16 or 10.128.0.0/14, this CIDR by default taken by OpenShift for internal communication), 
@@ -33,7 +34,7 @@ But there is option if you want to change, see the Red Hat OpenShift documentati
 4.	Create routing table for internet and associate public subnet and add route with Internet Gate Way
 5.	Setup Nat Gate Way and assign public IP and associate with Private Subnet.
 
-Step #4	Setup Security Group
+- Step #4	Setup Security Group
 
 ## Deployment Steps
 
@@ -97,7 +98,8 @@ chmod 755 *.sh
 	./instance-creation.sh
 ```
 ####4. 	This script will do passwordless login & prepare all hosts
-	Before running this script make sure you add your key-pair content in prasen.pem file
+	### Note: Before running this script make sure you add your key-pair content in prasen.pem file
+	
 ```
 	./next-step1.sh 
 ```
