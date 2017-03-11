@@ -22,9 +22,9 @@ Before you deploy this Quick Start, we recommend that you become familiar with t
 It is assumes that familiarity with PaaS concepts and Red Hat OpenShift. For more information, see the Red Hat OpenShift documentation.
 If you want to access publically your openshift then you need registered domain. Here I use my domain (cloud-café.in) which I purchase from godaddy.in
 
-- Step #1	Subscribe to Red Hat OpenShift
-- Step #2	Prepare an AWS Account
-- Step #3	Setup VPC
+##### Step #1	Subscribe to Red Hat OpenShift
+##### Step #2	Prepare an AWS Account
+##### Step #3	Setup VPC
 
 1.	Configure VPC with 10.90.0.0/16 CIDR	
 (Do not use 10.1.0.0/16 or 10.128.0.0/14, this CIDR by default taken by OpenShift for internal communication), 
@@ -34,11 +34,13 @@ But there is option if you want to change, see the Red Hat OpenShift documentati
 4.	Create routing table for internet and associate public subnet and add route with Internet Gate Way
 5.	Setup Nat Gate Way and assign public IP and associate with Private Subnet.
 
-- Step #4	Setup Security Group
+##### Step #4	Setup Security Group
 
 ## Deployment Steps
 
 DNS is a requirement for OpenShift Enterprise. In fact most issues comes if you do not have properly working DNS environment.  As we are running in AWS so there is another complex because AWS use its own DNS server on their instances, we need to change make a separate DNS server and use in our environment.
+
+### Preparation of custom DNS Environment in AWS
 
 1.	Go to your VPC
 2.	Choose your VPC from “Filter by VPC:”
@@ -48,7 +50,7 @@ DNS is a requirement for OpenShift Enterprise. In fact most issues comes if you 
 6.	Give DNS server IP in Domain name servers.
 7.	You can set NTP servers on same DNS server, give DNS server IP in NTP servers (optional).
 
-Now activate your DNS server for your VPC
+### Now activate your DNS server for your VPC
 
 1.	Now go to your VPC
 2.	Choose your VPC from “Filter by VPC:”
@@ -119,10 +121,16 @@ chmod 755 *.sh
 	chmod 755 post-ose-setup.sh
 	./post-ose-setup.sh
 ```
-# Check status from master host
+### Check status from master host
 ```
   oc get pods
   oc get all
   url=`more /etc/origin/master/master-config.yaml | grep publicURL`
   echo $url
 ```
+
+# Feedback
+
+We'll love to hear feedback and ideas on how we can make it more useful. Just create an issue.
+
+Thanks
