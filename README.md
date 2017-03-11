@@ -1,4 +1,4 @@
-# Openshift-aws
+# Openshift on AWS
 
 # Overview
 This Quick Start reference deployment guide provides step-by-step instructions for deploying Red Hat OpenShift on the Amazon Web Services (AWS) cloud. 
@@ -58,26 +58,66 @@ Now activate your DNS server for your VPC
 
 Now launch an EC2 in Public Subnet with 10.90.1.78 ip 
 Add below content in user data in Advance section.
-
+//
 #!/bin/bash
 echo nameserver 8.8.8.8 >> /etc/resolv.conf
 yum install git unzip -y
+//
 
+Once DNS host is up and running login then make ready dns host for staring installation
 
+# Clone packeges 
+git clone https://github.com/prasenforu/openshift-aws.git
 
+cd openshift-aws
 
+# Add EC2 key-pair (add pem key content to prasen.pem file) & change prmission
 
+chmod 400 prasen.pem
+chmod 755 *.sh
 
+# Edit install-aws-cli.sh (Add access-key & secret-access-key)
 
+1.	Setup DNS
 
+	./setup-dns.sh
+	reboot dns host
 
+2.	Install AWS CLI for Instance creation & Management
+	Add access-key, secret-access-key & region in this file.
 
+	./install-aws-cli.sh
 
+3. 	Create Instances (Master, Hub, Node1 & Node2)
+	You Can change script based on your requirement.
+	(Type of host, volume size, etc.)
 
+	./instance-creation.sh
 
+4. 	This script will do passwordless login & prepare all hosts
+	Before running this script make sure you add your key-pair content in prasen.pem file
 
+	./next-step1.sh 
+
+5.	This script will install & update packages and prepare docker storage in different volume
+
+	./install-docker-storage.sh
+
+6.	Starting OSE 3.3 Installation using ansible
+
+	./start-ose-installation.sh
+
+7.	After OSE 3.3 Installation, there few setup need to make environment ready
+	Login authentication using htpassword, edit this file as per your requirement.
+	This script need to run from ose-master host
+
+	ssh ose-master
+	chmod 755 post-ose-setup.sh
+	./post-ose-setup.sh
 
 # Check status
   
   oc get pods
   oc get all
+  url=`more /etc/origin/master/master-config.yaml | grep publicURL`
+  echo $url
