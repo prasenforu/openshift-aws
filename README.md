@@ -48,6 +48,7 @@ DNS is a requirement for OpenShift Enterprise. In fact most issues comes if you 
 7.	You can set NTP servers on same DNS server, give DNS server IP in NTP servers (optional).
 
 Now activate your DNS server for your VPC
+
 1.	Now go to your VPC
 2.	Choose your VPC from “Filter by VPC:”
 3.	Click “Your VPCs”
@@ -56,7 +57,8 @@ Now activate your DNS server for your VPC
 6.	Then “Edit DHCP Option Set “
 7.	Then Select what you created from earlier.
 
-Now launch an EC2 in Public Subnet with 10.90.1.78 ip 
+### Now launch an EC2 in Public Subnet with 10.90.1.78 ip 
+
 Add below content in user data in Advance section.
 ```
 #!/bin/bash
@@ -78,32 +80,32 @@ chmod 755 *.sh
 ```
 ### Edit install-aws-cli.sh (Add access-key & secret-access-key)
 
-1.	Setup DNS
+####1.	Setup DNS
 ```
 	./setup-dns.sh
 	reboot dns host
 ```
-2.	Install AWS CLI for Instance creation & Management
+####2.	Install AWS CLI for Instance creation & Management
 	Add access-key, secret-access-key & region in this file.
 ```
 	./install-aws-cli.sh
 ```
-3. 	Create Instances (Master, Hub, Node1 & Node2)
+####3. 	Create Instances (Master, Hub, Node1 & Node2)
 	You Can change script based on your requirement.
 	(Type of host, volume size, etc.)
 ```
 	./instance-creation.sh
 ```
-4. 	This script will do passwordless login & prepare all hosts
+####4. 	This script will do passwordless login & prepare all hosts
 	Before running this script make sure you add your key-pair content in prasen.pem file
 ```
 	./next-step1.sh 
 ```
-5.	This script will install & update packages and prepare docker storage in different volume
+####5.	This script will install & update packages and prepare docker storage in different volume
 ```
 	./install-docker-storage.sh
 ```
-6.	Starting OSE 3.3 Installation using ansible
+####6.	Starting OSE 3.3 Installation using ansible
 ```
 	./start-ose-installation.sh
 ```
