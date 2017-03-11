@@ -36,9 +36,9 @@ But there is option if you want to change, see the Red Hat OpenShift documentati
 
 ##### Step #4	Setup Security Group
 
-| Security Group | Type | Protocol | Port Range | Source |
+** OSE-DNS-SG **
+| Type | Protocol | Port Range | Source |
 | ------ | ------ | ------ | ------ | ------ |
-OSE-DNS-SG |
 | HTTP | TCP | 80 | 0.0.0.0/0 |
 | SSH | TCP | 22 | 0.0.0.0/0 |
 | Custom TCP | TCP| 8443| 10.90.0.0/16 |
@@ -46,7 +46,10 @@ OSE-DNS-SG |
 | DNS (TCP)| TCP| 53| 10.90.0.0/16 |
 | HTTPS| TCP| 443| 0.0.0.0/0 |
 | All ICMP | All| N/A| 10.90.0.0/16 |
-| OSE-MASTER-SG | 
+
+ ** OSE-MASTER-SG **
+| Type | Protocol | Port Range | Source |
+| ------ | ------ | ------ | ------ | ------ |
 | Custom UDP | UDP| 10250| 10.90.0.0/16 |
 | HTTP| TCP| 80| 0.0.0.0/0  |
 | Custom TCP | TCP| 4789| 10.90.0.0/16 |
@@ -60,7 +63,9 @@ OSE-DNS-SG |
 | HTTPS| TCP| 443| 0.0.0.0/0 |
 | All ICMP | All| N/A| 10.90.0.0/16 |
 | NFS| TCP| 2049| 10.90.0.0/16 |
-| OSE-HUB-SG | 
+** OSE-HUB-SG **
+| Type | Protocol | Port Range | Source |
+| ------ | ------ | ------ | ------ | ------ |
 | Custom UDP | UDP| 10250| 10.90.0.0/16 |
 | HTTP| TCP| 80| 0.0.0.0/0 |
 | Custom TCP | TCP| 4789| 10.90.0.0/16 |
@@ -74,7 +79,9 @@ OSE-DNS-SG |
 | HTTPS| TCP| 443| 0.0.0.0/0 |
 | All ICMP | All| N/A| 10.90.0.0/16 |
 | NFS| TCP| 2049| 10.90.0.0/16 |
-| OSE-NODE-SG | 
+** OSE-NODE-SG **
+| Type | Protocol | Port Range | Source |
+| ------ | ------ | ------ | ------ | ------ |
 | Custom UDP | UDP| 10250| 10.90.0.0/16 |
 | HTTP| TCP| 80| 0.0.0.0/0 |
 | Custom TCP | TCP| 4789| 10.90.0.0/16 |
