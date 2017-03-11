@@ -98,11 +98,12 @@ chmod 755 *.sh
 
 1.	From console launch following instances with below details.
 
-| Host | Private IP |	Public IP |	Security Group |	Subnet |
-| ose-master |	10.90.1.208 |	Yes |	OSE-MASTER-SG |	Public |
-| ose-hub |	10.90.1.209 |	Yes |	OSE-HUB-SG |	Public |
-| ose-node1 |	10.90.2.210 |	No |	OSE-NODE-SG |	Private |
-|ose-node2 |	10.90.2.211 |	No |	OSE-NODE-SG |	Private |
+| Host | Private IP | Public IP | Security Group | Subnet |
+| ------ | ------ | ------ | ------ | ------ |
+| ose-master | 10.90.1.208 | Yes | OSE-MASTER-SG | Public |
+| ose-hub | 10.90.1.209 | Yes |	OSE-HUB-SG | Public |
+| ose-node1 | 10.90.2.210 | No | OSE-NODE-SG | Private |
+|ose-node2 | 10.90.2.211 | No |	OSE-NODE-SG | Private |
 
 2. 	Create Instances (Master, Hub, Node1 & Node2) using AWS CLI
 	You Can change script based on your requirement.
