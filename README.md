@@ -96,7 +96,7 @@ chmod 755 *.sh
 ```
 ####3. 	Now launch master, hub and nodes instance, there are two way.
 
-1.	From console launch following instances with below details.
+###### a.	From console launch following instances with below details.
 
 | Host | Private IP | Public IP | Security Group | Subnet |
 | ------ | ------ | ------ | ------ | ------ |
@@ -105,7 +105,9 @@ chmod 755 *.sh
 | ose-node1 | 10.90.2.210 | No | OSE-NODE-SG | Private |
 |ose-node2 | 10.90.2.211 | No |	OSE-NODE-SG | Private |
 
-2. 	Create Instances (Master, Hub, Node1 & Node2) using AWS CLI
+### OR
+
+###### b. 	Create Instances (Master, Hub, Node1 & Node2) using AWS CLI
 	You Can change script based on your requirement.
 	(Type of host, volume size, etc.)
 	
