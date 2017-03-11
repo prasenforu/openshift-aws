@@ -77,6 +77,7 @@ git clone https://github.com/prasenforu/openshift-aws.git
 cd openshift-aws
 ```
 ### Add EC2 key-pair (add pem key content to prasen.pem file) & change prmission
+
 ```
 chmod 400 prasen.pem
 chmod 755 *.sh
@@ -115,7 +116,9 @@ chmod 755 *.sh
 ```
 7.	After OSE 3.3 Installation, there few setup need to make environment ready
 	Login authentication using htpassword, edit this file as per your requirement.
+	
 	### Note: This script need to run from ose-master host
+	
 ```
 	ssh ose-master
 	chmod 755 post-ose-setup.sh
@@ -133,4 +136,4 @@ chmod 755 *.sh
 
 We'll love to hear feedback and ideas on how we can make it more useful. Just create an issue.
 
-Thanks
+Thanks !!
