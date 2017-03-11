@@ -124,12 +124,19 @@ chmod 755 *.sh
 	chmod 755 post-ose-setup.sh
 	./post-ose-setup.sh
 ```
-### Check status from master host
+### Check status from master host and get console URL
 ```
   oc get pods
   oc get all
   url=`more /etc/origin/master/master-config.yaml | grep publicURL`
   echo $url
+```
+
+#### For security reason, you can delete access-key, secret-access-key and pem files
+
+```
+rm ~/.aws/config install-aws-cli.sh prasen.pem
+
 ```
 
 # Feedback
