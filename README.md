@@ -30,9 +30,11 @@ If you want to access publically your openshift then you need registered domain.
 (Do not use 10.1.0.0/16 or 10.128.0.0/14, this CIDR by default taken by OpenShift for internal communication), 
 But there is option if you want to change, see the Red Hat OpenShift documentation.
 2.	Create two subnet (Private - 10.90.2.0/24  & Public 10.90.1.0/24)
-3.	Create Internet Gate Way (IGW)
+3.	Create InternetGateWay (IGW)
 4.	Create routing table for internet and associate public subnet and add route with Internet Gate Way
-5.	Setup Nat Gate Way and assign public IP and associate with Private Subnet.
+5.	Setup NatGateWay and assign public IP and select Public Subnet
+6.	Then add route 0.0.0.0/0 source from NAT 
+7.	Then go to association and add Private Subnet.
 
 ##### Step #4	Setup Security Group
 
