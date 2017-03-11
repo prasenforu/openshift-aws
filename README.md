@@ -36,6 +36,60 @@ But there is option if you want to change, see the Red Hat OpenShift documentati
 
 ##### Step #4	Setup Security Group
 
+| Security Group | Type | Protocol | Port Range | Source |
+| ------ | ------ | ------ | ------ | ------ |
+OSE-DNS-SG |
+| HTTP | TCP | 80 | 0.0.0.0/0 |
+| SSH | TCP | 22 | 0.0.0.0/0 |
+| Custom TCP | TCP| 8443| 10.90.0.0/16 |
+| DNS (UDP)| UDP| 53| 10.90.0.0/16 |
+| DNS (TCP)| TCP| 53| 10.90.0.0/16 |
+| HTTPS| TCP| 443| 0.0.0.0/0 |
+| All ICMP | All| N/A| 10.90.0.0/16 |
+| OSE-MASTER-SG | 
+| Custom UDP | UDP| 10250| 10.90.0.0/16 |
+| HTTP| TCP| 80| 0.0.0.0/0  |
+| Custom TCP | TCP| 4789| 10.90.0.0/16 |
+| SSH| TCP| 22| OSE-DNS-SG  |
+| Custom TCP | TCP| 8443| 0.0.0.0/0 |
+| Custom UDP | UDP| 2049| 10.90.0.0/16 |
+| Custom TCP | TCP| 10250| 10.90.0.0/16 |
+| DNS (UDP)| UDP| 53| 10.90.0.0/16 |
+| DNS (TCP)| TCP| 53| 10.90.0.0/16 |
+| Custom UDP | UDP| 4789| 10.90.0.0/16 |
+| HTTPS| TCP| 443| 0.0.0.0/0 |
+| All ICMP | All| N/A| 10.90.0.0/16 |
+| NFS| TCP| 2049| 10.90.0.0/16 |
+| OSE-HUB-SG | 
+| Custom UDP | UDP| 10250| 10.90.0.0/16 |
+| HTTP| TCP| 80| 0.0.0.0/0 |
+| Custom TCP | TCP| 4789| 10.90.0.0/16 |
+| SSH| TCP| 22| OSE-DNS-SG |
+| Custom TCP | TCP| 8443| 10.90.0.0/16 |
+| Custom UDP | UDP| 2049| 10.90.0.0/16 |
+| Custom TCP | TCP| 10250| 10.90.0.0/16 |
+| DNS (UDP)| UDP| 53| 10.90.0.0/16 |
+| DNS (TCP)| TCP| 53| 10.90.0.0/16 |
+| Custom UDP | UDP| 4789| 10.90.0.0/16 |
+| HTTPS| TCP| 443| 0.0.0.0/0 |
+| All ICMP | All| N/A| 10.90.0.0/16 |
+| NFS| TCP| 2049| 10.90.0.0/16 |
+| OSE-NODE-SG | 
+| Custom UDP | UDP| 10250| 10.90.0.0/16 |
+| HTTP| TCP| 80| 0.0.0.0/0 |
+| Custom TCP | TCP| 4789| 10.90.0.0/16 |
+| SSH| TCP| 22| OSE-DNS-SG |
+| Custom TCP | TCP| 8443| 10.90.0.0/16 |
+| Custom UDP | UDP| 2049| 10.90.0.0/16 |
+| Custom TCP | TCP| 10250| 10.90.0.0/16 |
+| DNS (UDP)| UDP| 53| 10.90.0.0/16 |
+| DNS (TCP)| TCP| 53| 10.90.0.0/16 |
+| Custom UDP | UDP| 4789| 10.90.0.0/16 |
+| HTTPS| TCP| 443| 0.0.0.0/0 |
+| All ICMP | All| N/A| 10.90.0.0/16 |
+| NFS| TCP| 2049| 10.90.0.0/16 |
+
+
 ## Deployment Steps
 
 DNS is a requirement for OpenShift Enterprise. In fact most issues comes if you do not have properly working DNS environment.  As we are running in AWS so there is another complex because AWS use its own DNS server on their instances, we need to change make a separate DNS server and use in our environment.
