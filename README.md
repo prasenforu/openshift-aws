@@ -138,7 +138,7 @@ echo nameserver 8.8.8.8 >> /etc/resolv.conf
 yum install git unzip -y
 ```
 
-Once DNS host is up and running login then make ready dns host for staring installation
+Once DNS host is up and running, login on that dns host and make ready dns host for staring installation
 
 ### Clone packeges 
 ```
