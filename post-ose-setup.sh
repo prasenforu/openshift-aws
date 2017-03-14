@@ -18,7 +18,7 @@ oc get nodes --show-labels
 
 oc label node ose-hub.cloud-cafe.in region="infra" zone="infranodes" --overwrite
 oc label node ose-node1.cloud-cafe.in region="primary" zone="east" --overwrite
-oc label node ose-node2.cloud-cafe.in region="primary" zone="west" –overwrite
+oc label node ose-node2.cloud-cafe.in region="primary" zone="west" -–overwrite
 
 # Check all nodes details are updated
 
