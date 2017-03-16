@@ -45,3 +45,6 @@ for node in {ose-master,ose-hub,ose-node1,ose-node2}; do
 echo "Rebooting $node" && \
 ssh $node reboot
 done
+
+echo "Waiting for servers up ...."
+sleep 200
