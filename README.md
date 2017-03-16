@@ -41,68 +41,68 @@ But there is option if you want to change, see the Red Hat OpenShift documentati
 ** OSE-DNS-SG **
 
 | Type | Protocol | Port Range | Source |
-| ------ | ------ | ------ | ------ | ------ |
+| ------ | ------ | ------ | ------ |
 | HTTP | TCP | 80 | 0.0.0.0/0 |
 | SSH | TCP | 22 | 0.0.0.0/0 |
-| Custom TCP | TCP| 8443| 10.90.0.0/16 |
-| DNS (UDP)| UDP| 53| 10.90.0.0/16 |
-| DNS (TCP)| TCP| 53| 10.90.0.0/16 |
-| HTTPS| TCP| 443| 0.0.0.0/0 |
-| All ICMP | All| N/A| 10.90.0.0/16 |
+| Custom TCP | TCP | 8443 | 10.90.0.0/16 |
+| DNS (UDP) | UDP | 53 | 10.90.0.0/16 |
+| DNS (TCP) | TCP | 53 | 10.90.0.0/16 |
+| HTTPS| TCP | 443 | 0.0.0.0/0 |
+| All ICMP | All | N/A | 10.90.0.0/16 |
 
  ** OSE-MASTER-SG **
  
 | Type | Protocol | Port Range | Source |
-| ------ | ------ | ------ | ------ | ------ |
-| Custom UDP | UDP| 10250| 10.90.0.0/16 |
-| HTTP| TCP| 80| 0.0.0.0/0  |
-| Custom TCP | TCP| 4789| 10.90.0.0/16 |
-| SSH| TCP| 22| OSE-DNS-SG  |
-| Custom TCP | TCP| 8443| 0.0.0.0/0 |
-| Custom UDP | UDP| 2049| 10.90.0.0/16 |
-| Custom TCP | TCP| 10250| 10.90.0.0/16 |
-| DNS (UDP)| UDP| 53| 10.90.0.0/16 |
-| DNS (TCP)| TCP| 53| 10.90.0.0/16 |
-| Custom UDP | UDP| 4789| 10.90.0.0/16 |
-| HTTPS| TCP| 443| 0.0.0.0/0 |
-| All ICMP | All| N/A| 10.90.0.0/16 |
-| NFS| TCP| 2049| 10.90.0.0/16 |
+| ------ | ------ | ------ | ------ |
+| Custom UDP | UDP | 10250 | 10.90.0.0/16 |
+| HTTP | TCP | 80 | 0.0.0.0/0  |
+| Custom TCP | TCP | 4789 | 10.90.0.0/16 |
+| SSH | TCP | 22 | OSE-DNS-SG  |
+| Custom TCP | TCP | 8443 | 0.0.0.0/0 |
+| Custom UDP | UDP | 2049 | 10.90.0.0/16 |
+| Custom TCP | TCP | 10250 | 10.90.0.0/16 |
+| DNS (UDP) | UDP | 53 | 10.90.0.0/16 |
+| DNS (TCP) | TCP | 53 | 10.90.0.0/16 |
+| Custom UDP | UDP | 4789 | 10.90.0.0/16 |
+| HTTPS | TCP | 443 | 0.0.0.0/0 |
+| All ICMP | All | N/A | 10.90.0.0/16 |
+| NFS | TCP | 2049 | 10.90.0.0/16 |
 
 ** OSE-HUB-SG **
 
 | Type | Protocol | Port Range | Source |
-| ------ | ------ | ------ | ------ | ------ |
-| Custom UDP | UDP| 10250| 10.90.0.0/16 |
-| HTTP| TCP| 80| 0.0.0.0/0 |
-| Custom TCP | TCP| 4789| 10.90.0.0/16 |
-| SSH| TCP| 22| OSE-DNS-SG |
-| Custom TCP | TCP| 8443| 10.90.0.0/16 |
-| Custom UDP | UDP| 2049| 10.90.0.0/16 |
-| Custom TCP | TCP| 10250| 10.90.0.0/16 |
-| DNS (UDP)| UDP| 53| 10.90.0.0/16 |
-| DNS (TCP)| TCP| 53| 10.90.0.0/16 |
-| Custom UDP | UDP| 4789| 10.90.0.0/16 |
-| HTTPS| TCP| 443| 0.0.0.0/0 |
-| All ICMP | All| N/A| 10.90.0.0/16 |
-| NFS| TCP| 2049| 10.90.0.0/16 |
+| ------ | ------ | ------ | ------ |
+| Custom UDP | UDP | 10250 | 10.90.0.0/16 |
+| HTTP | TCP | 80 | 0.0.0.0/0 |
+| Custom TCP | TCP | 4789 | 10.90.0.0/16 |
+| SSH | TCP | 22 | OSE-DNS-SG |
+| Custom TCP | TCP | 8443 | 10.90.0.0/16 |
+| Custom UDP | UDP | 2049 | 10.90.0.0/16 |
+| Custom TCP | TCP | 10250 | 10.90.0.0/16 |
+| DNS (UDP) | UDP | 53 | 10.90.0.0/16 |
+| DNS (TCP) | TCP | 53 | 10.90.0.0/16 |
+| Custom UDP | UDP | 4789| 10.90.0.0/16 |
+| HTTPS| TCP | 443 | 0.0.0.0/0 |
+| All ICMP | All | N/A | 10.90.0.0/16 |
+| NFS | TCP | 2049 | 10.90.0.0/16 |
 
 ** OSE-NODE-SG **
 
 | Type | Protocol | Port Range | Source |
-| ------ | ------ | ------ | ------ | ------ |
-| Custom UDP | UDP| 10250| 10.90.0.0/16 |
-| HTTP| TCP| 80| 0.0.0.0/0 |
-| Custom TCP | TCP| 4789| 10.90.0.0/16 |
-| SSH| TCP| 22| OSE-DNS-SG |
-| Custom TCP | TCP| 8443| 10.90.0.0/16 |
-| Custom UDP | UDP| 2049| 10.90.0.0/16 |
-| Custom TCP | TCP| 10250| 10.90.0.0/16 |
-| DNS (UDP)| UDP| 53| 10.90.0.0/16 |
-| DNS (TCP)| TCP| 53| 10.90.0.0/16 |
-| Custom UDP | UDP| 4789| 10.90.0.0/16 |
-| HTTPS| TCP| 443| 0.0.0.0/0 |
-| All ICMP | All| N/A| 10.90.0.0/16 |
-| NFS| TCP| 2049| 10.90.0.0/16 |
+| ------ | ------ | ------ | ------ |
+| Custom UDP | UDP | 10250 | 10.90.0.0/16 |
+| HTTP | TCP | 80 | 0.0.0.0/0 |
+| Custom TCP | TCP | 4789 | 10.90.0.0/16 |
+| SSH | TCP | 22 | OSE-DNS-SG |
+| Custom TCP | TCP | 8443 | 10.90.0.0/16 |
+| Custom UDP | UDP | 2049 | 10.90.0.0/16 |
+| Custom TCP | TCP | 10250 | 10.90.0.0/16 |
+| DNS (UDP) | UDP | 53 | 10.90.0.0/16 |
+| DNS (TCP) | TCP | 53 | 10.90.0.0/16 |
+| Custom UDP | UDP | 4789 | 10.90.0.0/16 |
+| HTTPS | TCP | 443 | 0.0.0.0/0 |
+| All ICMP | All | N/A | 10.90.0.0/16 |
+| NFS | TCP | 2049 | 10.90.0.0/16 |
 
 
 ## Deployment Steps
@@ -153,17 +153,17 @@ chmod 755 *.sh
 ```
 ### Edit install-aws-cli.sh (Add access-key & secret-access-key)
 
-####1.	Setup DNS
+#### 1.	Setup DNS
 ```
 	./setup-dns.sh
 	reboot dns host
 ```
-####2.	Install AWS CLI for Instance creation & Management
+#### 2.	Install AWS CLI for Instance creation & Management
 	Add access-key, secret-access-key & region in this file.
 ```
 	./install-aws-cli.sh
 ```
-####3. 	Now launch master, hub and nodes instance, there are two way.
+#### 3. 	Now launch master, hub and nodes instance, there are two way.
 
 ###### a.	From console launch following instances with below details.
 
@@ -183,28 +183,27 @@ chmod 755 *.sh
 ```
 	./instance-creation.sh
 ```
-####4. 	This script will do passwordless login & prepare all hosts
+#### 4. 	This script will do passwordless login & prepare all hosts
 	### Note: Before running this script make sure you add your key-pair content in prasen.pem file
 	
 ```
 	./next-step1.sh 
 ```
-####5.	This script will install & update packages and prepare docker storage in different volume
+#### 5.	This script will install & update packages and prepare docker storage in different volume
 ```
 	./install-docker-storage.sh
 ```
-####6.	Starting OSE 3.3 Installation using ansible
+#### 6.	Starting OSE 3.3 Installation using ansible
 ```
 	./start-ose-installation.sh
 ```
-####7.	After OSE 3.3 Installation, there few setup need to make environment ready
+#### 7.	After OSE 3.3 Installation, there few setup need to make environment ready
 	Login authentication using htpassword, edit this file as per your requirement.
 	
 	### Note: This script need to run from ose-master host
 	
 ```
 	ssh ose-master
-	chmod 755 post-ose-setup.sh
 	./post-ose-setup.sh
 ```
 ### Check status from master host and get console URL
