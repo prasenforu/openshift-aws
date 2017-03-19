@@ -79,4 +79,5 @@ oadm policy add-scc-to-user privileged system:serviceaccount:default:router
 systemctl restart atomic-openshift-master
 systemctl status atomic-openshift-master
 oadm registry --service-account=registry --selector='region=infra'
-oadm router router --replicas=1 --selector='region=infra' --service-account=router --stats-password=admin2675
+#oadm router router --replicas=1 --selector='region=infra' --service-account=router --stats-password=admin2675
+oadm router router --replicas=1 --selector='region=infra' --service-account=router --latest-images --expose-metrics --stats-password=admin2675
