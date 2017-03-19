@@ -32,3 +32,7 @@ done
 ssh ose-hub "iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9093 -j ACCEPT"
 ssh ose-hub "iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9101 -j ACCEPT"
 ssh ose-hub "systemctl restart iptables"
+
+# HAproxy metric image pull
+
+ssh ose-hub "docker pull prom/haproxy-exporter"
