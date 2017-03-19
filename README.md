@@ -214,6 +214,13 @@ chmod 755 *.sh
   echo $url
 ```
 
+### Exit container cleanup command
+
+```
+docker rm `docker ps -a | grep -v CONTAINER | grep Exited | awk '{print $1}'`
+
+```
+
 #### For security reason, you can delete access-key, secret-access-key and pem files
 
 ```
