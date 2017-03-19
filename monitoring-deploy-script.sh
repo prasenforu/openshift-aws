@@ -3,6 +3,9 @@
 # Deployment script
 # Run from Master
 
+# Download repo from git
+git clone https://github.com/prasenforu/openshift-monitoring.git
+
 oc new-project prometheus
 oc adm policy add-cluster-role-to-user cluster-reader system:serviceaccount:prometheus:default
 
