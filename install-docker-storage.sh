@@ -30,6 +30,11 @@ ssh $node "systemctl enable docker"
 ssh $node "systemctl start docker"
 done
 
+# Docker Storage space check
+
+for node in {ose-master,ose-hub,ose-node1,ose-node2}; do echo "Status of Docker LV Storage on $node" && ssh $node "lvs | grep -v rhel"; done
+for node in {ose-master,ose-hub,ose-node1,ose-node2}; do echo "Status of Docker PV Storage on $node" && ssh $node "pvs | grep docker-vg"; done
+
 # Rebooting servers
 
 for node in {ose-master,ose-hub,ose-node1,ose-node2}; do
