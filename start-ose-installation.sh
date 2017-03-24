@@ -18,7 +18,7 @@ ansible-playbook -i myconfighost /usr/share/ansible/openshift-ansible/playbooks/
 # copy post OSE setup script
 scp /home/ec2-user/aws-in-openshift/post-ose-setup.sh  ose-master:/root/
 scp /home/ec2-user/aws-in-openshift/reset-ip.sh  ose-master:/root/
-scp /home/ec2-user/monitoring-deploy-script.sh ose-master:/root/
+scp /home/ec2-user/aws-in-openshift/monitoring-deploy-script.sh ose-master:/root/
 ssh ose-master 	"chmod 755 /root/post-ose-setup.sh"
 ssh ose-master 	"chmod 755 /root/reset-ip.sh"
 ssh ose-master 	"chmod 755 /root/monitoring-deploy-script.sh"
