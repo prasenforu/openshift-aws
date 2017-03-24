@@ -15,9 +15,9 @@ oc adm policy add-scc-to-user privileged system:serviceaccount:prometheus:defaul
 
 oc adm manage-node ose-master.cloud-cafe.in --schedulable=true
 
-oc create -f node-exporter.yml
+oc create -f openshift-monitoring/node-exporter.yml
 
-sleep 300
+sleep 200
 
 oc adm manage-node ose-master.cloud-cafe.in --schedulable=false
 
