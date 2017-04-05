@@ -22,3 +22,4 @@ sleep 200
 oc adm manage-node ose-master.cloud-cafe.in --schedulable=false
 
 oc patch namespace prometheus -p '{"metadata":{"annotations":{"openshift.io/node-selector":"region=infra"}}}'
+oadm policy add-scc-to-user anyuid -z default
