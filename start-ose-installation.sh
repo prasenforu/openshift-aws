@@ -31,6 +31,14 @@ ssh $node "iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dp
 ssh $node "systemctl restart iptables"
 done
 
+# Copy dokvgstat script to all node monitoring 
+
+for node in {ose-master,ose-hub,ose-node1,ose-node2}; do
+echo "Coping dokvgstat script on $node" && \
+scp /home/ec2-user/aws-in-openshift/dokvgstat.sh $node:/root/
+ssh $node "chmod 755 /root/dokvgstat.sh"
+done
+
 ssh ose-hub "iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9093 -j ACCEPT"
 ssh ose-hub "iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9101 -j ACCEPT"
 ssh ose-hub "systemctl restart iptables"
