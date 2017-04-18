@@ -28,7 +28,7 @@ ssh ose-master 	"chmod 755 /root/monitoring-deploy-script.sh"
 for node in {ose-master,ose-hub,ose-node1,ose-node2}; do
 echo "Adding iptables rules on $node" && \
 ssh $node "iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9100 -j ACCEPT"
-ssh $node "systemctl restart iptables"
+ssh $node "service iptables save"
 done
 
 # Copy dokvgstat script to all node monitoring 
@@ -39,9 +39,17 @@ scp /home/ec2-user/aws-in-openshift/dokvgstat.sh $node:/root/
 ssh $node "chmod 755 /root/dokvgstat.sh"
 done
 
-ssh ose-hub "iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9093 -j ACCEPT"
-ssh ose-hub "iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9101 -j ACCEPT"
-ssh ose-hub "systemctl restart iptables"
+ssh ose-master "iptables -A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9300 -j ACCEPT"
+ssh ose-master "service iptables save"
+
+ssh ose-hub "-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9100 -j ACCEPT"
+ssh ose-hub "-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9101 -j ACCEPT"
+ssh ose-hub "-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9093 -j ACCEPT"
+ssh ose-hub "-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9090 -j ACCEPT"
+ssh ose-hub "-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 3000 -j ACCEPT"
+ssh ose-hub "-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9000 -j ACCEPT"
+ssh ose-hub "-A OS_FIREWALL_ALLOW -p tcp -m state --state NEW -m tcp --dport 9300 -j ACCEPT"
+ssh ose-hub "service iptables save"
 
 # HAproxy metric image pull
 
