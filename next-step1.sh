@@ -22,7 +22,7 @@ ssh $node reboot
 done
 
 echo "Waiting for servers up ...."
-sleep 200
+sleep 120
 
 # Configuring Repo and setting network
 
@@ -45,4 +45,4 @@ ssh $node reboot
 done
 
 echo "Waiting for servers up ...."
-sleep 200
+sleep 90
