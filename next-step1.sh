@@ -35,8 +35,6 @@ ssh $node "rm /etc/hostname"
 ssh $node "touch /etc/hostname"
 ssh $node "echo '$node.cloud-cafe.in' | sudo tee --append /etc/hostname"
 ssh $node "echo 'HOSTNAME=$node.cloud-cafe.in' | sudo tee --append /etc/sysconfig/network"
-yum clean all
-yum repolist
 done
 
 # Rebooting servers
